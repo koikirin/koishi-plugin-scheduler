@@ -35,10 +35,10 @@ export class Scheduler extends Service {
     const task = () => {
       if (!flag) return
       callback()
-      let next = cronitor.next()
+      const next = cronitor.next()
       if (!next.done) this.at(next.value, task)
     }
-    let next = cronitor.next()
+    const next = cronitor.next()
     if (!next.done) {
       const timeout = setTimeout(task, next.value.getTime() - Date.now())
       return this.caller.collect('scheduler', () => (clearTimeout(timeout), flag = false, true))
@@ -49,11 +49,10 @@ export class Scheduler extends Service {
     return parseExpression(crontab, {
       startDate,
       endDate,
-      iterator: true
+      iterator: true,
     })
   }
 }
-
 
 export namespace Scheduler {
   export interface Config { }
