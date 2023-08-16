@@ -1,12 +1,12 @@
 {
   "name": "@hieuzest/koishi-plugin-scheduler",
   "description": "",
-  "version": "1.0.1",
-  "main": "lib/index.js",
+  "version": "1.0.4",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
   "typings": "lib/index.d.ts",
   "files": [
-    "lib",
-    "dist"
+    "lib"
   ],
   "license": "MIT",
   "scripts": {},
@@ -22,8 +22,9 @@
     "cron-parser": "^4.8.1"
   },
   "koishi": {
+    "browser": true,
     "service": {
-      "required": ["scheduler"]
+      "implements": ["scheduler"]
     }
   }
 }

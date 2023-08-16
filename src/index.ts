@@ -1,4 +1,4 @@
-import { Awaitable, Context, Service } from 'koishi'
+import { Awaitable, Context, Schema, Service } from 'koishi'
 import { parseExpression } from 'cron-parser'
 
 declare module 'koishi' {
@@ -8,6 +8,8 @@ declare module 'koishi' {
 }
 
 export class Scheduler extends Service {
+  static filter = false
+
   constructor(ctx: Context) {
     super(ctx, 'scheduler')
   }
@@ -50,6 +52,12 @@ export class Scheduler extends Service {
       iterator: true
     })
   }
+}
+
+
+export namespace Scheduler {
+  export interface Config { }
+  export const Config: Schema<Config> = Schema.object({})
 }
 
 export default Scheduler
