@@ -16,12 +16,12 @@ export class Scheduler extends Service {
 
   every(ms: number, callback: () => Awaitable<void>) {
     const timer = setInterval(callback, ms)
-    return this.caller.collect('scheduler', () => (clearInterval(timer), true))
+    return this[Context.current].collect('scheduler', () => (clearInterval(timer), true))
   }
 
   next(ms: number, callback: () => Awaitable<void>) {
     const timeout = setTimeout(callback, ms)
-    return this.caller.collect('scheduler', () => (clearTimeout(timeout), true))
+    return this[Context.current].collect('scheduler', () => (clearTimeout(timeout), true))
   }
 
   at(time: number | { getTime(): number }, callback: () => Awaitable<void>) {
@@ -41,7 +41,7 @@ export class Scheduler extends Service {
     const next = cronitor.next()
     if (!next.done) {
       const timeout = setTimeout(task, next.value.getTime() - Date.now())
-      return this.caller.collect('scheduler', () => (clearTimeout(timeout), flag = false, true))
+      return this[Context.current].collect('scheduler', () => (clearTimeout(timeout), flag = false, true))
     }
   }
 

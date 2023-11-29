@@ -1,7 +1,7 @@
 {
   "name": "@hieuzest/koishi-plugin-scheduler",
   "description": "",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "main": "lib/index.cjs",
   "module": "lib/index.mjs",
   "typings": "lib/index.d.ts",
@@ -16,7 +16,7 @@
     "plugin"
   ],
   "peerDependencies": {
-    "koishi": "^4.13.8"
+    "koishi": "^4.15.6"
   },
   "dependencies": {
     "cron-parser": "^4.9.0"
